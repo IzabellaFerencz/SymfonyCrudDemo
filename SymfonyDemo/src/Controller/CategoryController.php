@@ -51,6 +51,27 @@ class CategoryController extends AbstractController
         return new Response('<h1>'.$category->getName());
     }
 
+        /**
+     * @Route("/categories", name="readall_category")
+     */
+    public function readAllCategories()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+
+        if(!$categories)
+        {
+            throw $this->createNotFoundException('No categories found');
+        }
+
+        $nrOfCategories = count($categories);
+        $responseMsg='';
+        for ($i=0; $i < $nrOfCategories; $i++) { 
+            $responseMsg = $responseMsg.$categories[$i]->getName();
+        }
+
+        return new Response('<h1>'.$responseMsg);
+    }
+
     /**
      * @Route("/updatecategory/{id}", name="update_category")
      */
