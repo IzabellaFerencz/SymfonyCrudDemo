@@ -88,7 +88,6 @@ class CategoryController extends AbstractController
 
         $category->setName($newName);
 
-        $entityManager->persist($category);
         $entityManager->flush();
 
         return new Response('<h1>'.$category->getName());
