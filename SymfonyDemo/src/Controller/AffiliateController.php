@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Affiliate; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class AffiliateController extends AbstractController
 {
@@ -22,11 +24,19 @@ class AffiliateController extends AbstractController
      */
     public function createAffiliate():Response
     {
-        $name = $_GET['name'];
+        $url = $_GET['url'];
+        $email = $_GET['email'];
+        $token = $_GET['token'];
+        $isActivated = $_GET['isActivated'];
+
         $entityManager = $this->getDoctrine()->getManager();
 
         $affiliate = new Affiliate();
-        $affiliate->setName($name);
+        $affiliate->setUrl($url);
+        $affiliate->setEmail($email);
+        $affiliate->setToken($token);
+        $affiliate->setIsActivate($isActivated);
+        $affiliate->setCreatedAt(null);
 
         $entityManager->persist($affiliate);
         $entityManager->flush();
@@ -46,28 +56,28 @@ class AffiliateController extends AbstractController
             throw $this->createNotFoundException('No affiliate found with id='.$id);
         }
 
-        return new Response('<h1>'.$affiliate->getName());
+        return new Response('<h1>'.$affiliate->toString());
     }
 
         /**
-     * @Route("/categories", name="readall_affiliate")
+     * @Route("/affiliates", name="readall_affiliate")
      */
-    public function readAllCategories()
+    public function readAllAffiliates()
     {
-        $categories = $this->getDoctrine()->getRepository(Affiliate::class)->findAll();
+        $affiliates = $this->getDoctrine()->getRepository(Affiliate::class)->findAll();
 
-        if(!$categories)
+        if(!$affiliates)
         {
-            throw $this->createNotFoundException('No categories found');
+            throw $this->createNotFoundException('No affiliates found');
         }
 
-        $nrOfCategories = count($categories);
+        $nrOfAffiliates = count($affiliates);
         $responseMsg='';
-        for ($i=0; $i < $nrOfCategories; $i++) { 
-            $responseMsg = $responseMsg.$categories[$i]->getName();
+        for ($i=0; $i < $nrOfAffiliates; $i++) { 
+            $responseMsg = $responseMsg.'<h1>'.$affiliates[$i]->toString().'</h1>';
         }
 
-        return new Response('<h1>'.$responseMsg);
+        return new Response($responseMsg);
     }
 
     /**
@@ -75,20 +85,57 @@ class AffiliateController extends AbstractController
      */
     public function updateAffiliate($id)
     {
-        $newName = $_GET['newName'];
         $entityManager = $this->getDoctrine()->getManager();
         $affiliate = $this->getDoctrine()->getRepository(Affiliate::class)->find($id);
-
+        
         if(!$affiliate)
         {
             throw $this->createNotFoundException('No affiliate found with id='.$id);
         }
 
-        $affiliate->setName($newName);
+        try {
+            $url = $_GET['url'];
+            if($url != null)
+            {
+                $affiliate->setUrl($url);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $email = $_GET['email'];
+            if($email != null)
+            {
+                $affiliate->setEmail($email);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $token = $_GET['token'];
+            if($token != null)
+            {
+                $affiliate->setToken($token);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $isActivated = $_GET['isActivated'];
+            if($isActivated != null)
+            {
+                $affiliate->setIsActivate($isActivated);
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
 
         $entityManager->flush();
 
-        return new Response('<h1>'.$affiliate->getName());
+        return new Response('<h1>'.$affiliate->toString());
     }
 
     /**
