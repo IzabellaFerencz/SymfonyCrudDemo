@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Job; 
+use App\Entity\Category; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class JobController extends AbstractController
 {
@@ -22,11 +25,68 @@ class JobController extends AbstractController
      */
     public function createJob():Response
     {
-        $name = $_GET['name'];
         $entityManager = $this->getDoctrine()->getManager();
-
         $job = new Job();
-        $job->setName($name);
+
+        $categoryid = $_GET['categoryid'];
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($categoryid);
+        $job->setCategoryId($category);
+
+        try {
+            $type = $_GET['type'];
+            $job->setType($type);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        $company = $_GET['company'];
+        $job->setCompany($company);
+
+        try {
+            $logo = $_GET['logo'];
+            $job->setLogo($logo);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $url = $_GET['url'];
+            $job->setUrl($url);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        $position = $_GET['position'];
+        $job->setPosition($position);
+
+        $location = $_GET['location'];
+        $job->setLocation($location);
+
+        $description = $_GET['description'];
+        $job->setDescription($description);
+
+        $howtoapply = $_GET['howtoapply'];
+        $job->setHowToApply($howtoapply);
+
+        $token = $_GET['token'];
+        $job->setToken($token);
+
+        $ispublic = $_GET['ispublic'];
+        $job->setIsPublic($ispublic);
+
+        $isactivated = $_GET['isactivated'];
+        $job->setIsActivated($isactivated);
+
+        $email = $_GET['email'];
+        $job->setEmail($email);
+
+        $expiresat = $_GET['expiresat'];
+        $job->setExpiresAt($expiresat);
+
+        //TO DO: set current date
+        $job->setCreatedAt(null);
+
+        $job->setUpdatedAt(null);
 
         $entityManager->persist($job);
         $entityManager->flush();
@@ -46,28 +106,28 @@ class JobController extends AbstractController
             throw $this->createNotFoundException('No job found with id='.$id);
         }
 
-        return new Response('<h1>'.$job->getName());
+        return new Response('<h1>'.$job->toString());
     }
 
         /**
-     * @Route("/categories", name="readall_job")
+     * @Route("/jobs", name="readall_job")
      */
-    public function readAllCategories()
+    public function readAllJobs()
     {
-        $categories = $this->getDoctrine()->getRepository(Job::class)->findAll();
+        $jobs = $this->getDoctrine()->getRepository(Job::class)->findAll();
 
-        if(!$categories)
+        if(!$jobs)
         {
-            throw $this->createNotFoundException('No categories found');
+            throw $this->createNotFoundException('No jobs found');
         }
 
-        $nrOfCategories = count($categories);
+        $nrOfJobs = count($jobs);
         $responseMsg='';
-        for ($i=0; $i < $nrOfCategories; $i++) { 
-            $responseMsg = $responseMsg.$categories[$i]->getName();
+        for ($i=0; $i < $nrOfJobs; $i++) { 
+            $responseMsg = $responseMsg.'<h1>'.$jobs[$i]->toString().'</h1>';
         }
 
-        return new Response('<h1>'.$responseMsg);
+        return new Response($responseMsg);
     }
 
     /**
@@ -75,7 +135,6 @@ class JobController extends AbstractController
      */
     public function updateJob($id)
     {
-        $newName = $_GET['newName'];
         $entityManager = $this->getDoctrine()->getManager();
         $job = $this->getDoctrine()->getRepository(Job::class)->find($id);
 
@@ -84,11 +143,112 @@ class JobController extends AbstractController
             throw $this->createNotFoundException('No job found with id='.$id);
         }
 
-        $job->setName($newName);
+        try {
+            $categoryid = $_GET['categoryid'];
+            $category = $this->getDoctrine()->getRepository(Category::class)->find($categoryid);
+            $job->setCategoryId($category);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $type = $_GET['type'];
+            $job->setType($type);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $company = $_GET['company'];
+            $job->setCompany($company);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+
+        try {
+            $logo = $_GET['logo'];
+            $job->setLogo($logo);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $url = $_GET['url'];
+            $job->setUrl($url);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $position = $_GET['position'];
+            $job->setPosition($position);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $location = $_GET['location'];
+            $job->setLocation($location);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $description = $_GET['description'];
+            $job->setDescription($description);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $howtoapply = $_GET['howtoapply'];
+            $job->setHowToApply($howtoapply);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $token = $_GET['token'];
+            $job->setToken($token);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $ispublic = $_GET['ispublic'];
+            $job->setIsPublic($ispublic);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $isactivated = $_GET['isactivated'];
+            $job->setIsActivated($isactivated);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        try {
+            $email = $_GET['email'];
+            $job->setEmail($email);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        try {
+            $expiresat = $_GET['expiresat'];
+            $job->setExpiresAt($expiresat);
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        //TO DO: set current date
+        $job->setUpdatedAt(null);
 
         $entityManager->flush();
 
-        return new Response('<h1>'.$job->getName());
+        return new Response('<h1>'.$job->toString());
     }
 
     /**

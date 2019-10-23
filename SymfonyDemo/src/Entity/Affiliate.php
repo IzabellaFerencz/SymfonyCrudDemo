@@ -109,10 +109,10 @@ class Affiliate
     public function toString(): string
     {
         $dateString='';
-        if($this->getCreatedAt()!=null)
+        if($this->created_at!=null)
         {
-            $dateString = $this->getCreatedAt()->format('Y-m-d H:i:s');
+            $dateString = $this->created_at->format('Y-m-d H:i:s');
         }
-        return $this->getId().' - '.$this->getUrl().' - '.$this->getEmail().' - '.$this->getToken().' - '.$this->getIsActivate().' - '.$dateString;
+        return $this->id.' - '.$this->url.' - '.$this->email.' - '.$this->token.' - '.$this->is_activate.' - '.$dateString;
     }
 }
