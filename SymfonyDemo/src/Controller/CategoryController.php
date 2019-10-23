@@ -48,7 +48,11 @@ class CategoryController extends AbstractController
             throw $this->createNotFoundException('No category found with id='.$id);
         }
 
-        return new Response('<h1>'.$category->getName());
+        //return new Response('<h1>'.$category->getName());
+
+        return $this->render('category/category.html.twig', [
+            'category' => $category,
+        ]);
     }
 
         /**
@@ -69,7 +73,27 @@ class CategoryController extends AbstractController
             $responseMsg = $responseMsg.$categories[$i]->getName();
         }
 
-        return new Response('<h1>'.$responseMsg);
+        //return new Response('<h1>'.$responseMsg);
+
+        return $this->render('category/categories.html.twig', [
+            'categories' => $categories,
+        ]);
+    }
+
+    /**
+     * @Route("/editcategory/{id}", name="edit_category")
+     */
+    public function editCategory($id)
+    {
+        $category = $this->getDoctrine()->getRepository(Category::class)->find($id);
+
+        if(!$category)
+        {
+            throw $this->createNotFoundException('No category found with id='.$id);
+        }
+        return $this->render('category/editcategory.html.twig', [
+            'category' => $category,
+        ]);
     }
 
     /**
