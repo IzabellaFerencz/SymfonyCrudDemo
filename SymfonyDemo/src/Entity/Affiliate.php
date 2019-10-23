@@ -105,4 +105,14 @@ class Affiliate
 
         return $this;
     }
+
+    public function toString(): string
+    {
+        $dateString='';
+        if($this->created_at!=null)
+        {
+            $dateString = $this->created_at->format('Y-m-d H:i:s');
+        }
+        return $this->id.' - '.$this->url.' - '.$this->email.' - '.$this->token.' - '.$this->is_activate.' - '.$dateString;
+    }
 }

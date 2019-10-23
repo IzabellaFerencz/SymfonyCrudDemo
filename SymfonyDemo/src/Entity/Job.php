@@ -293,4 +293,24 @@ class Job
 
         return $this;
     }
+
+    public function toString():string
+    {
+        $createdAtString='';
+        if($this->created_at!=null)
+        {
+            $dateString = $this->created_at->format('Y-m-d H:i:s');
+        }
+        $expiresAtString='';
+        if($this->expires_at!=null)
+        {
+            $expiresAtString = $this->expires_at->format('Y-m-d H:i:s');
+        }
+        $updatedAtString='';
+        if($this->updated_at!=null)
+        {
+            $updatedAtString = $this->updated_at->format('Y-m-d H:i:s');
+        }
+        return $this->id.' - '.$this->category_id->getId().' - '.$this->type.' - '.$this->company.' - '.$this->logo.' - '.$this->url.' - '.$this->position.' - '.$this->location.' - '.$this->description.' - '.$this->how_to_apply.' - '.$this->token.' - '.$this->is_public.' - '.$this->is_activated.' - '.$this->email.' - '.$expiresAtString.' - '.$createdAtString.' - '.$updatedAtString;
+    }
 }
