@@ -1,52 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-    <div>
-        <label>Id:</label>
-        <label>{{ affiliate.getId() }}</label>
-    </div>
-    <div>
-        <label>Url:</label>
-        <label>{{ affiliate.getUrl() }}</label>
-    </div>
-    <div>
-        <label>Email:</label>
-        <label>{{ affiliate.getEmail() }}</label>
-    </div>
-    <div>
-        <label>Token:</label>
-        <label>{{ affiliate.getToken() }}</label>
-    </div>
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <label>Id:</label>
+                <label>{{ affiliate.getId() }}</label>
+            </div>
+            <div>
+                <label>Url:</label>
+                <label>{{ affiliate.getUrl() }}</label>
+            </div>
+            <div>
+                <label>Email:</label>
+                <label>{{ affiliate.getEmail() }}</label>
+            </div>
+            <div>
+                <label>Token:</label>
+                <label>{{ affiliate.getToken() }}</label>
+            </div>
 
-    <div>
-        <label>IsActivated:</label>
-        
-        {% if affiliate.getIsActivate() == false %}
-            <label>0</label>
-        {% else %}
-            <label>1</label>
-        {% endif %}
+            <div>
+                <label>IsActivated:</label>
+                
+                {% if affiliate.getIsActivate() == false %}
+                    <label>0</label>
+                {% else %}
+                    <label>1</label>
+                {% endif %}
+            </div>
+
+            <div>
+                <label>CreatedAt:</label>
+                {% if affiliate.getCreatedAt() == null %}
+                    <label>NULL</label>
+                {% else %}
+                    <label>{{affiliate.getCreatedAt().format('Y-m-d')}}</label>
+                {% endif %}
+            </div>
+
+
+
+
+        <a class="btn btn-primary" href="/editaffiliate/{{affiliate.getId()}}">Edit</a>
+        <a class="btn btn-secondary" href="/deleteaffiliate/{{affiliate.getId()}}">Delete</a>
     </div>
-
-    <div>
-        <label>CreatedAt:</label>
-        {% if affiliate.getCreatedAt() == null %}
-            <label>NULL</label>
-        {% else %}
-            <label>{{affiliate.getCreatedAt().format('Y-m-d')}}</label>
-        {% endif %}
-    </div>
-
-
-
-
-    <a href="/editaffiliate/{{affiliate.getId()}}">Edit</a>
-    <a href="/deleteaffiliate/{{affiliate.getId()}}">Delete</a>
+</div>
 </div>
 {% endblock %}

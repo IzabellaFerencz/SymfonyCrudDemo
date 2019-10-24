@@ -1,31 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<form action="/updateaffiliate/{{affiliate.getId()}}">
-  Url:<br>
-  <input type="text" name="url" value="{{affiliate.getUrl()}}" required="true">
-  <br>
-
-  Email:<br>
-  <input type="text" name="email" value="{{affiliate.getEmail()}}" required="true">
-  <br>
-
-  Token:<br>
-  <input type="text" name="token" value="{{affiliate.getToken()}}" required="true">
-  <br>
-
-  IsActivated:<br>
-  <input type="number" min=0 max=1 name="isActivated" value="{{affiliate.getIsActivate()}}" required="true">
-  <br>
-
-  <br><br>
-  <input type="submit" value="Update">
-</form> 
+<div class="example-wrapper">
+    <div class="card">
+          <div class="card-header">
+            <h3>Edit affiliate</h3>
+          </div>
+      <div class="card-body">
+      <form action="/updateaffiliate/{{affiliate.getId()}}">
+        <div class="form-group">
+          <label>URL</label>
+          <input class="form-control" type="text" value="{{affiliate.getUrl()}}" name="url" required="true">
+        </div>
+      
+        <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="text" value="{{affiliate.getEmail()}}" name="email" required="true">
+        </div>
+      
+        <div class="form-group">
+            <label>Token</label>
+            <input class="form-control" type="text" value="{{affiliate.getToken()}}" name="token" required="true">
+        </div>
+      
+        <div class="form-group">
+            <label>IsActivated</label>
+            <input class="form-control" type="number" min=0 max=1 name="isActivated" value="{{affiliate.getIsActivate()}}" required="true" style="width: 80px">
+        </div>
+      
+        <input class="btn btn-primary" type="submit" value="Update">
+      </form>
+  </div>
+  </div>  
 {% endblock %}
 
 

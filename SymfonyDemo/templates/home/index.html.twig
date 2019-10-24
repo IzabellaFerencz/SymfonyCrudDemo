@@ -3,17 +3,40 @@
 {% block title %}Hello HomeController!{% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-    <div><a href="/categories">Categories</a></div>
-    <div><a href="/jobs">Jobs</a></div>
-    <div><a href="/affiliates">Affiliates</a></div>
-    
-    
-    
+    <div class="card" style="max-width: 650px;">
+        <div class="card-header">
+            Administrator app
+        </div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td><a style="width: 200px" class="btn btn-info" href="/categories">Categories</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a style="width: 200px" class="btn btn-warning" href="/jobs">Jobs</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><a style="width: 200px" class="btn btn-danger" href="/affiliates">Affiliates</a></td>
+                </tr>
+
+            </table>
+             
+        </div>
+            
+    </div>    
 </div>
 {% endblock %}

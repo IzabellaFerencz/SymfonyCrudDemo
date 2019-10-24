@@ -1,71 +1,96 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<form action="/updatejob/{{job.getId()}}">
-  Category:<br>
-  <input type="text" name="categoryid" value="{{job.getCategoryId().getId()}}" required="true">
-  <br>
-
-  Type:<br>
-  <input type="text" name="type" value="{{job.getType()}}">
-  <br>
-
-  Company:<br>
-  <input type="text" name="company" value="{{job.getCompany()}}" required="true">
-  <br>
-
-  Logo:<br>
-  <input type="text" name="logo" value="{{job.getLogo()}}">
-  <br>
-
-  Url:<br>
-  <input type="text" name="url" value="{{job.getUrl()}}">
-  <br>
-
-  Position:<br>
-  <input type="text" name="position" value="{{job.getPosition()}}" required="true">
-  <br>
-
-  Location:<br>
-  <input type="text" name="location" value="{{job.getLocation()}}" required="true">
-  <br>
-
-  Description:<br>
-  <input type="text" name="description" value="{{job.getDescription()}}" required="true">
-  <br>
-
-  HowToApply:<br>
-  <input type="text" name="howtoapply" value="{{job.getHowToApply()}}" required="true">
-  <br>
-
-  Token:<br>
-  <input type="text" name="token" value="{{job.getToken()}}" required="true">
-  <br>
-
-  IsPublic:<br>
-  <input type="number" min=0 max=1 name="ispublic" value="{{job.getIsPublic()}}" required="true">
-  <br>
-
-  IsActivated:<br>
-  <input type="number" min=0 max=1 name="isactivated" value="{{job.getIsActivated()}}" required="true">
-  <br>
-
-  Email:<br>
-  <input type="text" name="email" value="{{job.getEmail()}}" required="true">
-  <br>
-
-  ExpiresAt:<br>
-  <input type="date" name="expiresat" value="{{job.getExpiresAt().format('Y-m-d')}}" required="true">
-  <br>
-
-  <br><br>
-  <input type="submit" value="Update">
-</form> 
+<div class="example-wrapper">
+    <div class="card">
+        <div class="card-header">
+          <h3>Edit job</h3>
+        </div>
+        <div class="card-body">
+          <form action="/updatejob/{{job.getId()}}">
+              <div class="form-group">
+                <label>Category</label>
+                <input class="form-control" type="text" name="categoryid" value="{{job.getCategoryId().getId()}}" required="true">
+              </div>
+  
+            <div class="form-group">
+              <label>Type</label>
+              <input class="form-control" type="text" value="{{job.getType()}}" name="type">
+            </div>
+  
+              <div class="form-group">
+                  <label>Company</label>
+                  <input class="form-control" type="text" name="company" value="{{job.getCompany()}}" required="true">
+              </div>
+  
+              <div class="form-group">
+                  <label>Logo</label>
+                  <input class="form-control" type="text" value="{{job.getLogo()}}" name="logo">
+              </div>
+  
+              <div class="form-group">
+                  <label>Url</label>
+                  <input class="form-control" type="text" value="{{job.getUrl()}}" name="url">
+            </div>
+  
+            <div class="form-group">
+                <label>Position</label>
+                <input class="form-control" type="text" name="position" value="{{job.getPosition()}}" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>Location</label>
+                <input class="form-control" type="text" name="location" value="{{job.getLocation()}}" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>Description</label>
+                <input class="form-control" type="text" name="description" value="{{job.getDescription()}}" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>How to apply</label>
+                <input class="form-control" type="text" name="howtoapply" value="{{job.getHowToApply()}}" required="true">
+              <br>
+            </div>
+  
+            <div class="form-group">
+                <label>Token</label>
+                <input class="form-control" type="text" name="token" value="{{job.getToken()}}" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>IsPublic</label>
+                <input class="form-control" style="width: 80px" value="{{job.getIsPublic()}}" type="number" min=0 max=1 name="ispublic" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>IsActivated</label>
+                <input class="form-control" style="width: 80px" value="{{job.getIsActivated()}}" type="number" min=0 max=1 name="isactivated" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" type="text" value="{{job.getEmail()}}" name="email" required="true">
+            </div>
+  
+            <div class="form-group">
+                <label>Expired at</label>
+                <input class="form-control" type="date" name="expiresat" value="{{job.getExpiresAt().format('Y-m-d')}}" required="true">
+            </div>
+  
+            <input class="btn btn-primary" type="submit" value="Update">
+          </form> 
+      </div>
+    </div>
+  </div>
 {% endblock %}
 
 

@@ -1,31 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 <a href="/newjob">New</a>
-<table style="width:100%">
-  <tr>
-    <th>Id</th>
-    <th>Category</th>
-    <th>Type</th> 
-    <th>Company</th>
-    <th>Logo</th>
-    <th>Url</th>
-    <th>Position</th>
-    <th>Location</th>
-    <th>Description</th>
-    <th>HowToApply</th>
-    <th>Token</th>
-    <th>IsPublic</th>
-    <th>IsActivated</th>
-    <th>Email</th>
-    <th>ExpiresAt</th>
-    <th>CreatedAt</th>
-    <th>UpdatedAt</th>
-  </tr>
+<table class="table table-bordered" style="width:100%">
+        <thead class="thead-dark">
+                <tr>
+                        <th>Id</th>
+                        <th>Category</th>
+                        <th>Type</th> 
+                        <th>Company</th>
+                        <th>Logo</th>
+                        <th>Url</th>
+                        <th>Position</th>
+                        <th>Location</th>
+                        <th>Description</th>
+                        <th>HowToApply</th>
+                        <th>Token</th>
+                        <th>IsPublic</th>
+                        <th>IsActivated</th>
+                        <th>Email</th>
+                        <th>ExpiresAt</th>
+                        <th>CreatedAt</th>
+                        <th>UpdatedAt</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+        </thead>
+ <tbody>
 
   {% for job in jobs %}
         <tr>
@@ -67,11 +78,15 @@
             {% else %}
                 <td>{{job.getUpdatedAt().format('Y-m-d h:m:s')}}</td>
             {% endif %}
-            <td><a href="/job/{{job.getId()}}">View</a></td>
-            <td><a href="/editjob/{{job.getId()}}">Edit</a></td>
-            <td><a href="/deletejob/{{job.getId()}}">Delete</a></td>
+            <td>
+                <a class="btn btn-info" href="/job/{{job.getId()}}">View</a>
+                <a class="btn btn-warning" href="/editjob/{{job.getId()}}">Edit</a>
+                <a class="btn btn-danger" href="/deletejob/{{job.getId()}}">Delete</a>
+            </td>
         </tr>
     {% endfor %}
+    </tbody>
   </table>
- 
+  <a class="btn btn-primary" href="/home">BACK</a>
+
 {% endblock %}

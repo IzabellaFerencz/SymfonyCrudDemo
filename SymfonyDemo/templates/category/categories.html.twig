@@ -1,28 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 <a href="/newcategory">New</a>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th></th>
+           
+        </tr>
+    </thead>
+    <tbody>
     {% for category in categories %}
         <tr>
             <td>{{category.getId()}}</td>
             <td>{{category.getName()}}</td>
-            <td><a href="/category/{{category.getId()}}">View</a></td>
-            <td><a href="/editcategory/{{category.getId()}}">Edit</a></td>
-            <td><a href="/deletecategory/{{category.getId()}}">Delete</a></td>
+            <td align="center">
+                <a class="btn btn-info" href="/category/{{category.getId()}}">View</a>
+                <a class="btn btn-warning" href="/editcategory/{{category.getId()}}">Edit</a>
+                <a class="btn btn-danger" href="/deletecategory/{{category.getId()}}">Delete</a>
+            </td>
         </tr>
     {% endfor %}
+    </tbody>
 </table>
+
+<a class="btn btn-primary" href="/home">BACK</a>
+
 
 {% endblock %}
