@@ -81,10 +81,10 @@ class JobController extends AbstractController
         $job->setEmail($email);
 
         $expiresat = $_GET['expiresat'];
-        $job->setExpiresAt($expiresat);
+        $job->setExpiresAt(\DateTime::createFromFormat('Y-m-d', $expiresat));
 
         //TO DO: set current date
-        $job->setCreatedAt(null);
+        $job->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
 
         $job->setUpdatedAt(null);
 
@@ -238,13 +238,13 @@ class JobController extends AbstractController
 
         try {
             $expiresat = $_GET['expiresat'];
-            $job->setExpiresAt($expiresat);
+            $job->setExpiresAt(\DateTime::createFromFormat('Y-m-d', $expiresat));
         } catch (\Throwable $th) {
             //throw $th;
         }
         
         //TO DO: set current date
-        $job->setUpdatedAt(null);
+        $job->setUpdatedAt(\DateTime::createFromFormat('Y-m-d', date('Y-m-d')));
 
         $entityManager->flush();
 

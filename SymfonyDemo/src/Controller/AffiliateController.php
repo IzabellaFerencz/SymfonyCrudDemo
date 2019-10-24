@@ -36,7 +36,7 @@ class AffiliateController extends AbstractController
         $affiliate->setEmail($email);
         $affiliate->setToken($token);
         $affiliate->setIsActivate($isActivated);
-        $affiliate->setCreatedAt(null);
+        $affiliate->setCreatedAt(\DateTime::createFromFormat('Y-m-d', date("Y-m-d")));
 
         $entityManager->persist($affiliate);
         $entityManager->flush();
