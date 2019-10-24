@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<form action="/createjob">
+  Category:<br>
+  <input type="text" name="categoryid" required="true">
+  <br>
+
+  Type:<br>
+  <input type="text" name="type">
+  <br>
+
+  Company:<br>
+  <input type="text" name="company" required="true">
+  <br>
+
+  Logo:<br>
+  <input type="text" name="logo">
+  <br>
+
+  Url:<br>
+  <input type="text" name="url">
+  <br>
+
+  Position:<br>
+  <input type="text" name="position" required="true">
+  <br>
+
+  Location:<br>
+  <input type="text" name="location" required="true">
+  <br>
+
+  Description:<br>
+  <input type="text" name="description" required="true">
+  <br>
+
+  HowToApply:<br>
+  <input type="text" name="howtoapply" required="true">
+  <br>
+
+  Token:<br>
+  <input type="text" name="token" required="true">
+  <br>
+
+  IsPublic:<br>
+  <input type="number" min=0 max=1 name="ispublic" required="true">
+  <br>
+
+  IsActivated:<br>
+  <input type="number" min=0 max=1 name="isactivated" required="true">
+  <br>
+
+  Email:<br>
+  <input type="text" name="email" required="true">
+  <br>
+
+  ExpiresAt:<br>
+  <input type="date" name="expiresat" required="true">
+  <br>
+
+  <br><br>
+  <input type="submit" value="Create">
+</form> 
+{% endblock %}
+
+

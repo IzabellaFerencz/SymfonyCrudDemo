@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<form action="/updatejob/{{job.getId()}}">
+  Category:<br>
+  <input type="text" name="categoryid" value="{{job.getCategoryId().getId()}}" required="true">
+  <br>
+
+  Type:<br>
+  <input type="text" name="type" value="{{job.getType()}}">
+  <br>
+
+  Company:<br>
+  <input type="text" name="company" value="{{job.getCompany()}}" required="true">
+  <br>
+
+  Logo:<br>
+  <input type="text" name="logo" value="{{job.getLogo()}}">
+  <br>
+
+  Url:<br>
+  <input type="text" name="url" value="{{job.getUrl()}}">
+  <br>
+
+  Position:<br>
+  <input type="text" name="position" value="{{job.getPosition()}}" required="true">
+  <br>
+
+  Location:<br>
+  <input type="text" name="location" value="{{job.getLocation()}}" required="true">
+  <br>
+
+  Description:<br>
+  <input type="text" name="description" value="{{job.getDescription()}}" required="true">
+  <br>
+
+  HowToApply:<br>
+  <input type="text" name="howtoapply" value="{{job.getHowToApply()}}" required="true">
+  <br>
+
+  Token:<br>
+  <input type="text" name="token" value="{{job.getToken()}}" required="true">
+  <br>
+
+  IsPublic:<br>
+  <input type="number" min=0 max=1 name="ispublic" value="{{job.getIsPublic()}}" required="true">
+  <br>
+
+  IsActivated:<br>
+  <input type="number" min=0 max=1 name="isactivated" value="{{job.getIsActivated()}}" required="true">
+  <br>
+
+  Email:<br>
+  <input type="text" name="email" value="{{job.getEmail()}}" required="true">
+  <br>
+
+  ExpiresAt:<br>
+  <input type="date" name="expiresat" value="{{job.getExpiresAt().format('Y-m-d')}}" required="true">
+  <br>
+
+  <br><br>
+  <input type="submit" value="Update">
+</form> 
+{% endblock %}
+
+

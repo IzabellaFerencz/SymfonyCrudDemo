@@ -8,19 +8,19 @@
 
 <form action="/updateaffiliate/{{affiliate.getId()}}">
   Url:<br>
-  <input type="text" name="url" value="{{affiliate.getUrl()}}">
+  <input type="text" name="url" value="{{affiliate.getUrl()}}" required="true">
   <br>
 
   Email:<br>
-  <input type="text" name="email" value="{{affiliate.getEmail()}}">
+  <input type="text" name="email" value="{{affiliate.getEmail()}}" required="true">
   <br>
 
   Token:<br>
-  <input type="text" name="token" value="{{affiliate.getToken()}}">
+  <input type="text" name="token" value="{{affiliate.getToken()}}" required="true">
   <br>
 
   IsActivated:<br>
-  <input type="number" min=0 max=1 name="isActivated" value="{{affiliate.getIsActivate()}}">
+  <input type="number" min=0 max=1 name="isActivated" value="{{affiliate.getIsActivate()}}" required="true">
   <br>
 
   <br><br>

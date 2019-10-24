@@ -19,6 +19,15 @@ class JobController extends AbstractController
             'controller_name' => 'JobController',
         ]);
     }
+
+     /**
+     * @Route("/newjob", name="new_job")
+     */
+    public function newJob()
+    {
+        return $this->render('job/createjob.html.twig', [
+        ]);
+    }
      
     /**
      * @Route("/createjob", name="create_job")
@@ -106,7 +115,9 @@ class JobController extends AbstractController
             throw $this->createNotFoundException('No job found with id='.$id);
         }
 
-        return new Response('<h1>'.$job->toString());
+        return $this->render('job/job.html.twig', [
+            'job' => $job,
+        ]);
     }
 
         /**
@@ -121,13 +132,25 @@ class JobController extends AbstractController
             throw $this->createNotFoundException('No jobs found');
         }
 
-        $nrOfJobs = count($jobs);
-        $responseMsg='';
-        for ($i=0; $i < $nrOfJobs; $i++) { 
-            $responseMsg = $responseMsg.'<h1>'.$jobs[$i]->toString().'</h1>';
-        }
+        return $this->render('job/jobs.html.twig', [
+            'jobs' => $jobs,
+        ]);
+    }
 
-        return new Response($responseMsg);
+     /**
+     * @Route("/editjob/{id}", name="edit_job")
+     */
+    public function editJob($id)
+    {
+        $job = $this->getDoctrine()->getRepository(Job::class)->find($id);
+
+        if(!$job)
+        {
+            throw $this->createNotFoundException('No job found with id='.$id);
+        }
+        return $this->render('job/editjob.html.twig', [
+            'job' => $job,
+        ]);
     }
 
     /**
@@ -248,7 +271,7 @@ class JobController extends AbstractController
 
         $entityManager->flush();
 
-        return new Response('<h1>'.$job->toString());
+        return new Response('<h1> Updated job with id='.$job->getId());
     }
 
     /**
