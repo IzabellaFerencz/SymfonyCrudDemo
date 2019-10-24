@@ -20,6 +20,15 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @Route("/newcategory", name="new_category")
+     */
+    public function newCategory()
+    {
+        return $this->render('category/createcategory.html.twig', [
+        ]);
+    }
+
+    /**
      * @Route("/createcategory", name="create_category")
      */
     public function createCategory():Response
@@ -114,7 +123,7 @@ class CategoryController extends AbstractController
 
         $entityManager->flush();
 
-        return new Response('<h1>'.$category->getName());
+        return new Response('<h1> Updated category with id='.$category->getId());
     }
 
     /**

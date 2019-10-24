@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<form action="/updateaffiliate/{{affiliate.getId()}}">
+  Url:<br>
+  <input type="text" name="url" value="{{affiliate.getUrl()}}">
+  <br>
+
+  Email:<br>
+  <input type="text" name="email" value="{{affiliate.getEmail()}}">
+  <br>
+
+  Token:<br>
+  <input type="text" name="token" value="{{affiliate.getToken()}}">
+  <br>
+
+  IsActivated:<br>
+  <input type="number" min=0 max=1 name="isActivated" value="{{affiliate.getIsActivate()}}">
+  <br>
+
+  <br><br>
+  <input type="submit" value="Update">
+</form> 
+{% endblock %}
+
+

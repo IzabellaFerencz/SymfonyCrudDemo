@@ -7,8 +7,16 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>{{ category.getName() }}! </h1>
-    <a>Edit</a>
+    <div>
+        <label>Id:</label>
+        <label>{{ category.getId() }}</label>
+    </div>
+    <div>
+        <label>Name:</label>
+        <label>{{ category.getName() }}</label>
+    </div>
+
+    <a href="/editcategory/{{category.getId()}}">Edit</a>
     <a href="/deletecategory/{{category.getId()}}">Delete</a>
 </div>
 {% endblock %}

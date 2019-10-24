@@ -6,12 +6,12 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<form action="/updatecategory/{{category.getId()}}">
+<form action="/createcategory">
   Category name:<br>
-  <input type="text" name="newName" value="{{category.getName()}}">
+  <input type="text" name="name">
   <br>
   <br><br>
-  <input type="submit" value="Update">
+  <input type="submit" value="Create">
 </form> 
 {% endblock %}
 

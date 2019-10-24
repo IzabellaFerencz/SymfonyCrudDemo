@@ -20,6 +20,15 @@ class AffiliateController extends AbstractController
     }
 
     /**
+     * @Route("/newaffiliate", name="new_affiliate")
+     */
+    public function newAffiliate()
+    {
+        return $this->render('affiliate/createaffiliate.html.twig', [
+        ]);
+    }
+
+    /**
      * @Route("/createaffiliate", name="create_affiliate")
      */
     public function createAffiliate():Response
@@ -56,7 +65,10 @@ class AffiliateController extends AbstractController
             throw $this->createNotFoundException('No affiliate found with id='.$id);
         }
 
-        return new Response('<h1>'.$affiliate->toString());
+       // return new Response('<h1>'.$affiliate->toString());
+       return $this->render('affiliate/affiliate.html.twig', [
+        'affiliate' => $affiliate,
+        ]);
     }
 
         /**
@@ -71,13 +83,25 @@ class AffiliateController extends AbstractController
             throw $this->createNotFoundException('No affiliates found');
         }
 
-        $nrOfAffiliates = count($affiliates);
-        $responseMsg='';
-        for ($i=0; $i < $nrOfAffiliates; $i++) { 
-            $responseMsg = $responseMsg.'<h1>'.$affiliates[$i]->toString().'</h1>';
-        }
+        return $this->render('affiliate/affiliates.html.twig', [
+            'affiliates'=>$affiliates
+            ]);
+    }
 
-        return new Response($responseMsg);
+    /**
+     * @Route("/editaffiliate/{id}", name="edit_affiliate")
+     */
+    public function editAffiliate($id)
+    {
+        $affiliate = $this->getDoctrine()->getRepository(Affiliate::class)->find($id);
+
+        if(!$affiliate)
+        {
+            throw $this->createNotFoundException('No affiliate found with id='.$id);
+        }
+        return $this->render('affiliate/editaffiliate.html.twig', [
+            'affiliate' => $affiliate,
+        ]);
     }
 
     /**
@@ -135,7 +159,7 @@ class AffiliateController extends AbstractController
 
         $entityManager->flush();
 
-        return new Response('<h1>'.$affiliate->toString());
+        return new Response('<h1> Updated affiliate with id='.$affiliate->getId());
     }
 
     /**
