@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="{{class}}">{{message}}</div>
+<a href="/newuser" class="btn btn-success">New</a>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{user.getId()}}</td>
+            <td>{{user.getUsername()}}</td>
+            <td>{{user.getPassword()}}</td>
+            <td><a href="/userdetails/{{user.getId()}}" class="btn btn-info">View User Details</a></td>
+            <td><a href="/newuserdetails/{{user.getId()}}" class="btn btn-success">Add User Details</a></td>
+            <td><a href="/edituserdetails/{{user.getId()}}" class="btn btn-warning">Edit User Details</a></td>
+            <td><a <a href="/deleteuserdetails/{{user.getId()}}" class="btn btn-danger">Delete User Details</a></td>
+            <td><a href="/deleteuser/{{user.getId()}}" class="btn btn-danger">Delete User</a></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+<a class="btn btn-primary" href="/home">BACK</a>
+
+{% endblock %}

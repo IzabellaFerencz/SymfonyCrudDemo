@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<a href="/users" class="btn btn-primary">Back</a>
+
+<div class="example-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <h3>Create user details</h3>
+    </div>
+    <div class="card-body">
+
+    <form action="/createuserdetails/{{userid}}">
+      <div class="form-group">
+        <label>First Name</label>
+        <input class="form-control" type="text" name="firstname" required="true" placeholder="Enter FirstName">
+      </div>
+
+      <div class="form-group">
+          <label>Last Name</label>
+          <input class="form-control" type="text" name="lastname" required="true" placeholder="Enter Last Name">
+      </div>
+
+      <div class="form-group">
+          <label>Phone Number</label>
+          <input class="form-control" type="text" name="phonenr" required="true" placeholder="Enter Phone Number">
+      </div>
+
+      <div class="form-group">
+          <label>Adress</label>
+          <input class="form-control" type="text" name="adress" placeholder="Enter Adress" required="true" >
+      </div>
+
+      <input class="btn btn-primary" type="submit" value="Create">
+    </form>
+  </div>
+
+  </div>
+</div> 
+{% endblock %}
+
+
